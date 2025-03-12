@@ -1,0 +1,33 @@
+textarea {
+    width: 50%; /* Makes the textarea take up the full width of its container */
+    height: 200px; /* Adjust the height as needed */
+    padding: 10px; /* Adds some padding inside the textarea for better readability */
+    font-size: 16px; /* Increases the text size inside the textarea */
+    border: 1px solid #ccc; /* Border styling */
+    border-radius: 4px; /* Rounded corners for the border */
+    resize: vertical; /* Allows the user to resize the textarea vertically */
+}
+
+
+footer {
+    position:absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+
+body {
+    margin-right: 30%;
+    margin-left: 30%;
+    background-color: #2C3639;
+    
+}
+
+h1 {
+    color:#A27B5C;
+}
+h2, footer, p, div {
+    color: #DCD7C9;
+}

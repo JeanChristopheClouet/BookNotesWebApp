@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body class="text-center">
+    <h1>Books I’ve read</h1>
+    <p>Tiny summary but detailed notes for each.
+       Use the ISBN number to find it from your local
+       library or anywhere else. This page will constantly update
+      as I read more, so bookmark it if you want to check back in a few months.
+
+    </p>
+
+    <% booksArr.forEach((bookObject) => { %>
+    <div id="<%=bookObject.isbn%>">
+        <h2>
+            <a href="/<%=bookObject.id%>">
+                <%=bookObject.title%>
+            </a>
+        </h2>
+        <div>Date read : <%=bookObject.date_read%></div>
+        <div>How strongly I recommend it : <%=bookObject.rating%></div>
+        <div>Description : <%=bookObject.description%></div>
+
+    </div>
+
+
+    <% })%>    
+</body>
+<%-include("partials/footer.ejs")-%>
+
+</html>
