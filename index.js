@@ -102,6 +102,24 @@ app.post("/create", async (req,res)=>{
     
 })
 
+app.post("/delete", async (req, res)=>{
+    // fetch the data from the req
+    var bookId = req.body.bookId
+
+    // do the sql query to update the data in the db.
+    await db.query(`DELETE FROM books
+              WHERE id=$1`,
+            [bookId])
+            
+    // fetch data from db and configure get routes
+    await FetchDataDB()
+    configureBookGetRoutes()
+
+    // redirect to the main page
+    res.redirect("/")
+
+    
+})
 
 // make the server listen to client requests
 app.listen(port, ()=>{
@@ -137,3 +155,5 @@ async function FetchDataDB(){
 // 3.11.2025 successes
 // create the update routes 
 // create the create route
+// So far we can CRU
+//...

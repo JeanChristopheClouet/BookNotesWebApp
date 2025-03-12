@@ -26,7 +26,11 @@
         <div>How strongly I recommend it : <%=bookObject.rating%></div>
         <div>Description : <%=bookObject.description%></div>
 
-    </div>
+        <form action="/delete" method="POST">
+            <input type="hidden" id="bookId" name="bookId" value="<%= bookObject.id %>">
+            <input type="submit" value="delete">
+        </form>
+    </div>  
 
 
     <% })%>    
