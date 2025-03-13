@@ -42,3 +42,7 @@ p{
 .bookImage {
     border-radius: 15%;
 }
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+}
