@@ -156,4 +156,7 @@ async function FetchDataDB(){
 // create the update routes 
 // create the create route
 // So far we can CRU
-//...
+//...D :)
+
+// 3.13.2025 goal:
+// work on making the notes input functional cuz it seems like it doesn't appear
