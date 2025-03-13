@@ -1,123 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
 <body class="text-center">
-    <div id="bookISBN">
-        <%=bookObj.isbn%>
-    </div>
-    
-    <h2 id="bookTitle">
-        <%=bookObj.title%>
-    </h2>
-    
-    <div id="bookDate">Date read : <%=bookObj.date_read%></div>
-    
-    <div id="bookRating">How strongly I recommend it : <%=bookObj.rating%></span>
-    </div>
-    
-    
-    <div id="bookDescription">
-        <%=bookObj.description%>
-    </div>
+    <img class="bookImage" src="https://covers.openlibrary.org/b/isbn/<%=bookObj.isbn%>-M.jpg" />
 
-    <div id="bookNotes">
-        <%=bookObj.notes%>
-    </div>
-
-    <button id="edit" class="edit" onclick="handler()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-        </svg>
-    </button>
-        
-    
-    <form class="edit" action="/edit" method="POST">
-
-        <!-- Book ID -->
-        <div class="form-field">
-            <input type="hidden" id="bookId" name="bookId" value="<%= bookObj.id %>">
-            <label for="bookId" id="bookIdLabel" hidden>Book ID:</label>
+    <div class="container mt-5">
+        <!-- Book ISBN -->
+        <div id="bookISBN" class="mb-3">
+            <span class="fw-bold">ISBN:</span> <%= bookObj.isbn %>
         </div>
-        
+
         <!-- Book Title -->
-        <div class="form-field">
-            <input hidden id="bookTitleEdit" name="bookTitleEdit" value="<%= bookObj.title %>">
-            <label for="bookTitleEdit" id="bookTitleEditLabel" hidden>Book Title:</label>
-        </div>
-        
-        <!-- ISBN -->
-        <div class="form-field">
-            <input hidden id="bookISBNEdit" name="bookISBNEdit" value="<%= bookObj.isbn %>">
-            <label for="bookISBNEdit" id="bookISBNEditLabel" hidden>ISBN:</label>
-        </div>
-        
-        <!-- Publish Date -->
-        <div class="form-field">
-            <input hidden type="date" id="bookDateEdit" name="bookDateEdit" value="2025-01-01">
-            <label for="bookDateEdit" id="bookDateEditLabel" hidden>Publish Date:</label>
-        </div>
-        
-        <!-- Rating -->
-        <div class="form-field">
-            <input hidden id="bookRatingEdit" name="bookRatingEdit" value="<%= bookObj.rating %>">
-            <label for="bookRatingEdit" id="bookRatingEditLabel" hidden>Rating:</label>
-        </div>
-        
-        <!-- Description -->
-        <div class="form-field">
-            <input hidden id="bookDescriptionEdit" name="bookDescriptionEdit" value="<%= bookObj.description %>">
-            <label for="bookDescriptionEdit" id="bookDescriptionEditLabel" hidden>Description:</label>
-        </div>
-        
-        <!-- Notes -->
-        <div class="form-field">
-            <textarea hidden id="bookNotesEdit" name="bookNotesEdit" value="<%= bookObj.description %>"></textarea>
-            <label for="bookNotesEdit" id="bookNotesEditLabel" hidden>Notes:</label>
+        <h2 id="bookTitle" class="mb-3 fs-3 fw-bold text-primary">
+            <%= bookObj.title %>
+        </h2>
+
+        <!-- Book Date Read -->
+        <div id="bookDate" class="mb-3">
+            <span class="fw-bold">Date read:</span> <%= bookObj.date_read %>
         </div>
 
-    
+        <!-- Book Rating -->
+        <div id="bookRating" class="mb-3">
+            <span class="fw-bold">How strongly I recommend it:</span> <%= bookObj.rating %>
+        </div>
 
-        <button id="done" class="edit" type="submit" hidden>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
-                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                <path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
-              </svg>
+        <!-- Book Description -->
+        <div id="bookDescription" class="mb-3">
+            <span class="fw-bold">Description:</span> <%= bookObj.description %>
+        </div>
+
+        <!-- Book Notes -->
+        <div id="bookNotes" class="mb-4">
+            <span class="fw-bold">Notes:</span> <%= bookObj.notes %>
+        </div>
+
+        <!-- Edit Button -->
+        <button id="edit" class="btn btn-primary mb-3" onclick="handler()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+            </svg>
         </button>
-    
-    </form>
+
+        <form class="edit" action="/edit" method="POST">
+            <div class="form-group mb-3">
+                <label for="bookId" class="form-label" hidden>Book ID:</label>
+                <input type="hidden" id="bookId" name="bookId" value="<%= bookObj.id %>">
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="bookTitleEdit" class="form-label" hidden>Book Title:</label>
+                <input hidden id="bookTitleEdit" name="bookTitleEdit" class="form-control" value="<%= bookObj.title %>">
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="bookISBNEdit" class="form-label" hidden>ISBN:</label>
+                <input hidden id="bookISBNEdit" name="bookISBNEdit" class="form-control" value="<%= bookObj.isbn %>">
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="bookDateEdit" class="form-label" hidden>Publish Date:</label>
+                <input hidden type="date" id="bookDateEdit" name="bookDateEdit" class="form-control" value="2025-01-01">
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="bookRatingEdit" class="form-label" hidden>Rating:</label>
+                <input hidden id="bookRatingEdit" name="bookRatingEdit" class="form-control" value="<%= bookObj.rating %>">
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="bookDescriptionEdit" class="form-label" hidden>Description:</label>
+                <input hidden id="bookDescriptionEdit" name="bookDescriptionEdit" class="form-control" value="<%= bookObj.description %>">
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="bookNotesEdit" class="form-label" hidden>Notes:</label>
+                <textarea hidden id="bookNotesEdit" name="bookNotesEdit" class="form-control"><%= bookObj.notes %></textarea>
+            </div>
+
+            <button id="done" class="btn btn-success mb-3" type="submit" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                    <path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
+                </svg>
+            </button>
+        </form>
+    </div>
 
 
+    <script>
+        function handler() {
+            document.getElementById("bookTitle").setAttribute("hidden", true);
+            document.getElementById("bookISBN").setAttribute("hidden", true);
+            document.getElementById("bookDate").setAttribute("hidden", true);
+            document.getElementById("bookRating").setAttribute("hidden", true);
+            document.getElementById("bookDescription").setAttribute("hidden", true);
+            document.getElementById("bookNotes").setAttribute("hidden", true);
+
+            document.getElementById("edit").setAttribute("hidden", true);
+            document.getElementById("done").removeAttribute("hidden");
+
+            document.getElementById("bookTitleEdit").removeAttribute("hidden");
+            document.getElementById("bookISBNEdit").removeAttribute("hidden");
+            document.getElementById("bookDateEdit").removeAttribute("hidden");
+            document.getElementById("bookRatingEdit").removeAttribute("hidden");
+            document.getElementById("bookDescriptionEdit").removeAttribute("hidden");
+            document.getElementById("bookNotesEdit").removeAttribute("hidden");
+
+            document.getElementById("bookTitleEditLabel").removeAttribute("hidden");
+            document.getElementById("bookISBNEditLabel").removeAttribute("hidden");
+            document.getElementById("bookDateEditLabel").removeAttribute("hidden");
+            document.getElementById("bookRatingEditLabel").removeAttribute("hidden");
+            document.getElementById("bookDescriptionEditLabel").removeAttribute("hidden");
+            document.getElementById("bookNotesEditLabel").removeAttribute("hidden");
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
+<!-- Footer -->
 <%- include('partials/footer.ejs'); -%>
 
-<script>
-    function handler() {
-      document.getElementById("bookTitle").setAttribute("hidden", true)
-      document.getElementById("bookISBN").setAttribute("hidden", true)
-      document.getElementById("bookDate").setAttribute("hidden", true)
-      document.getElementById("bookRating").setAttribute("hidden", true)
-      document.getElementById("bookDescription").setAttribute("hidden", true)
-      document.getElementById("bookNotes").setAttribute("hidden", true)
-
-      document.getElementById("edit").setAttribute("hidden", true)
-      document.getElementById("done").removeAttribute("hidden")
-
-      document.getElementById("bookTitleEdit").removeAttribute("hidden")
-      document.getElementById("bookISBNEdit").removeAttribute("hidden")
-      document.getElementById("bookDateEdit").removeAttribute("hidden")
-      document.getElementById("bookRatingEdit").removeAttribute("hidden")
-      document.getElementById("bookDescriptionEdit").removeAttribute("hidden")
-      document.getElementById("bookNotesEdit").removeAttribute("hidden")
-      
-      document.getElementById("bookTitleEditLabel").removeAttribute("hidden")
-      document.getElementById("bookISBNEditLabel").removeAttribute("hidden")
-      document.getElementById("bookDateEditLabel").removeAttribute("hidden")
-      document.getElementById("bookRatingEditLabel").removeAttribute("hidden")
-      document.getElementById("bookDescriptionEditLabel").removeAttribute("hidden")
-      document.getElementById("bookNotesEditLabel").removeAttribute("hidden")
-
-
-
-    }
-
-</script>
-
+</html>
