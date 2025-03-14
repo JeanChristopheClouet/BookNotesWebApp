@@ -18,6 +18,8 @@ const db = new pg.Client({
 
 // use it to connect to our db
 db.connect();
+// flag to allow rendering sorted resuts
+var is_sorted = false;
 
 // the array that will contain our book objects
 var booksArray = []
@@ -34,13 +36,16 @@ app.use(express.static("public"));
 // configure the / route
 app.get("/", async (req, res)=>{
     
-    
+    if(!is_sorted){
     // get all books from the db
-    await FetchDataDB()
-    // pass the array to the frontend
-    configureBookGetRoutes();
+        await FetchDataDB()
+    }
     
+    configureBookGetRoutes();
+    // pass the array to the frontend
     res.render("index.ejs", {booksArr:booksArray})
+    is_sorted=false;
+
 })
 
 
@@ -121,6 +126,31 @@ app.post("/delete", async (req, res)=>{
     
 })
 
+app.post("/sort-books", async (req, res)=>{
+    var sorting_option = req.body['filter-option'];
+    await FetchDataDB()
+    var sort_by;
+    // sort the array according to the type of sorting we want
+    if (sorting_option==="recency"){
+
+        booksArray = (await db.query(`SELECT * 
+            FROM books
+            ORDER BY date_read ASC`)).rows
+
+    }
+    else{
+
+        booksArray = (await db.query(`SELECT * 
+            FROM books
+            ORDER BY rating DESC`)).rows
+
+    }
+    
+    is_sorted=true;
+
+    res.redirect("/")
+})
+
 // make the server listen to client requests
 app.listen(port, ()=>{
     console.log(`Server listening on http://localhost:${port}`)
@@ -160,3 +190,4 @@ async function FetchDataDB(){
 
 // 3.13.2025 goal:
 // work on making the notes input functional cuz it seems like it doesn't appear
+// add a sorting option 
